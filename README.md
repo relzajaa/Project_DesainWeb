@@ -226,4 +226,4 @@ git add -i                        # penambahan interaktif
 
 ---
 
-© 2026 Farrel Muflif Muzzaki (K3525024). All rights reserved.
+<p align="center">© 2026 Farrel Muflif Muzzaki (K3525024). All rights reserved.</p>
