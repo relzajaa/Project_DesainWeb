@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Desain Responsif dengan Flexbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+        /* Ditambahkan border box untuk mempermudah pengaturan ukuran elemen agar tidak melebihi ukuran yang sudah ditentukan */
+        * {box-sizing: border-box;}
+        #wrapper {
+            margin: auto;
+            width: 100%;
+        }
+
+        #header {
+            height: 150px;
+            padding: 20px;
+            border: 2px solid red;
+        }
+
+        /* Ditambahkan Flex Container dimana elemen di dalamnya disusun secara horizontal dan dapat berpindah ke baris berikutnya jika ruang tidak cukup */
+        #nav {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: stretch;
+            gap: 20px;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid red;
+        }
+
+        /* Judul "Services" mengambil dan memenuhi satu baris penuh */
+        #nav h2 {
+            flex: 0 0 100%;
+            margin: 0;
+        }
+
+        /* Desktop 4 kolom (3 celah x 20px dibagi 4 item = 15px) */
+        .box {
+            flex: 1 1 calc(25% - 15px);
+            height: 120px;
+            background: red;
+            border: 2px solid red;
+        }
+
+        #footer {
+            padding: 20px;
+            height: 120px;
+            border: 2px solid red;
+        }
+
+        /* Tablet 2 kolom (1 celah 20px dibagi 2 item = 10px) */
+        @media only screen and (max-width: 1080px) {
+            .box {
+                flex-basis: calc(50% - 10px);
+            }
+        }
+
+        /* Smartphone 1 kolom */
+        @media only screen and (max-width: 640px) {
+            #nav {
+                flex-direction: column;
+                flex-wrap: nowrap;
+            }
+
+            .box {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <h2>Header</h2>
+        </div>
+
+        <div id="nav">
+            <h2>Services</h2>
+            <div class="box"> BOX 1 </div>
+            <div class="box"> BOX 2 </div>
+            <div class="box"> BOX 3 </div>
+            <div class="box"> BOX 4 </div>
+        </div>
+
+        <div id="footer">
+            <h2>Footer</h2>
+        </div>
+    </div>
+</body>
+</html>
