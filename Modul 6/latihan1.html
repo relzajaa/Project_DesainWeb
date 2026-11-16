@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Sederhana</title>
+  <style>
+    body {
+      background-color: #ece9f5;
+      font-family: Arial, sans-serif;
+    }
+
+    .kalkulator {
+      width: 320px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #2b2d5b;
+      border-radius: 20px;
+    }
+
+    h2 {
+      margin-top: 0;
+      text-align: center;
+      color: white;
+    }
+
+    /* Layar */
+    .layar {
+      padding: 12px;
+      background-color: #d3ddc0;
+      border-radius: 10px;
+      text-align: right;
+    }
+
+    #rumus {
+      font-size: 14px;
+      color: #555555;
+    }
+
+    #hasil {
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    /* Input */
+    label {
+      display: block;
+      margin-top: 15px;
+      color: white;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    /* Tombol */
+    .operasi {
+      width: 23%;
+      margin-top: 20px;
+      padding: 10px 0;
+      font-size: 26px;
+      font-weight: bold;
+      background-color: #f2b63d;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .operasi:hover {
+      background-color: #ffd36b;
+    }
+
+    .reset {
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="kalkulator">
+    <h2>Kalkulator</h2>
+
+    <div class="layar">
+      <div id="rumus">Masukkan dua angka</div>
+      <div id="hasil">0</div>
+    </div>
+
+    <label>Angka pertama</label>
+    <input type="number" id="angka1">
+
+    <label>Angka kedua</label>
+    <input type="number" id="angka2">
+
+    <button class="operasi" onclick="hitung('+')">+</button>
+    <button class="operasi" onclick="hitung('-')">-</button>
+    <button class="operasi" onclick="hitung('×')">×</button>
+    <button class="operasi" onclick="hitung('÷')">÷</button>
+
+    <button class="reset" onclick="reset()">Reset</button>
+  </div>
+
+  <script>
+    function tampilkan(rumus, hasil) {
+      document.getElementById("rumus").innerHTML = rumus;
+      document.getElementById("hasil").innerHTML = hasil;
+    }
+
+    function hitung(operasi) {
+      // Ambil isi kedua input
+      var angka1 = document.getElementById("angka1").value;
+      var angka2 = document.getElementById("angka2").value;
+
+      // Cek apakah ada input yang kosong
+      if (angka1 === "" || angka2 === "") {
+        tampilkan("Isi kedua angka dulu", "-");
+        return;
+      }
+
+      angka1 = Number(angka1);
+      angka2 = Number(angka2);
+
+      // Hitung sesuai operasi
+      var hasil;
+
+      if (operasi === "+") {
+        hasil = angka1 + angka2;
+      } else if (operasi === "-") {
+        hasil = angka1 - angka2;
+      } else if (operasi === "×") {
+        hasil = angka1 * angka2;
+      } else if (operasi === "÷") {
+        if (angka2 === 0) {
+          tampilkan("Tidak bisa dibagi 0", "-");
+          return;
+        }
+        hasil = angka1 / angka2;
+      }
+
+      // Tampilkan hasil (maksimal 3 angka di belakang koma)
+      hasil = Number(hasil.toFixed(3));
+      tampilkan(angka1 + " " + operasi + " " + angka2 + " =", hasil);
+    }
+
+    function reset() {
+      document.getElementById("angka1").value = "";
+      document.getElementById("angka2").value = "";
+      tampilkan("Masukkan dua angka", "0");
+    }
+  </script>
+</body>
+</html>
